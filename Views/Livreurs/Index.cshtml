@@ -1,0 +1,53 @@
+﻿@model IEnumerable<food_delevery_google_auth_Final_V.Entity.Livreur>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicule)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZoneLivraison)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Disponibilite)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vehicule)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZoneLivraison)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disponibilite)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdLivreur">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdLivreur">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdLivreur">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

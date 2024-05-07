@@ -12,6 +12,7 @@ namespace food_delevery_google_auth_Final_V.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+
         }
 
         public IActionResult Index()
