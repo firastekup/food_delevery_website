@@ -5,25 +5,44 @@
 <!-- Include Bootstrap CSS -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
+<style>
+    /* Style personnalisé pour la barre de navigation */
+    .navbar-nav {
+        background-color: #333; /* Couleur de fond de la barre de navigation */
+    }
+
+    .nav-item {
+        padding: 0 10px; /* Espacement entre les éléments de la barre de navigation */
+    }
+
+    .nav-link {
+        color: #fff !important; /* Couleur du texte des liens dans la barre de navigation */
+    }
+</style>
+
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
         </li>
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                <button type="submit" class="btn btn-link nav-link">Logout</button>
             </form>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Create", "Foods")">Réserver</a>
+        </li>
     }
-    else
+    
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </li>
     }
 </ul>
