@@ -1,0 +1,59 @@
+﻿@model IEnumerable<food_delevery_google_auth_Final_V.Entity.Commandef>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telclient)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomlivreur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCommande)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.food)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telclient)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomlivreur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCommande)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.food)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdCommande">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdCommande">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdCommande">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

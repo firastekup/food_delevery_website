@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using food_delevery_google_auth_Final_V.Data;
 
@@ -11,9 +12,11 @@ using food_delevery_google_auth_Final_V.Data;
 namespace food_delevery_google_auth_Final_V.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240512225711_addimagev2")]
+    partial class addimagev2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -305,66 +308,6 @@ namespace food_delevery_google_auth_Final_V.Data.Migrations
                     b.HasKey("IdCommande");
 
                     b.ToTable("Commande");
-                });
-
-            modelBuilder.Entity("food_delevery_google_auth_Final_V.Entity.Commandef", b =>
-                {
-                    b.Property<int>("IdCommande")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCommande"));
-
-                    b.Property<string>("ClientName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateCommande")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("food")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("nomlivreur")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("telclient")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdCommande");
-
-                    b.ToTable("commandef");
-                });
-
-            modelBuilder.Entity("food_delevery_google_auth_Final_V.Entity.Food", b =>
-                {
-                    b.Property<int>("IdAliment")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdAliment"));
-
-                    b.Property<string>("Categorie")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nom")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Prix")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("IdAliment");
-
-                    b.ToTable("Food");
                 });
 
             modelBuilder.Entity("food_delevery_google_auth_Final_V.Entity.Livreur", b =>

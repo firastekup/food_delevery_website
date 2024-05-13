@@ -10,22 +10,22 @@ using food_delevery_google_auth_Final_V.Entity;
 
 namespace food_delevery_google_auth_Final_V.Controllers
 {
-    public class ClientsController : Controller
+    public class CommandefsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ClientsController(ApplicationDbContext context)
+        public CommandefsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Clients
+        // GET: Commandefs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Client.ToListAsync());
+            return View(await _context.commandef.ToListAsync());
         }
 
-        // GET: Clients/Details/5
+        // GET: Commandefs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,18 +33,17 @@ namespace food_delevery_google_auth_Final_V.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Client
-                .FirstOrDefaultAsync(m => m.IdClient == id);
-            if (client == null)
+            var commandef = await _context.commandef
+                .FirstOrDefaultAsync(m => m.IdCommande == id);
+            if (commandef == null)
             {
                 return NotFound();
             }
 
-            return View(client);
+            return View(commandef);
         }
 
-        // GET: Clients/Create
-        // GET: Clients/Create
+        // GET: Commandefs/Create
         public IActionResult Create()
         {
             // Récupérer la liste des clients depuis la base de données
@@ -54,7 +53,7 @@ namespace food_delevery_google_auth_Final_V.Controllers
             var clientList = clients.Select(c => new SelectListItem
             {
                 Text = c.Nom,
-                Value = c.IdClient.ToString()
+                Value = c.Nom // Ou Value = c.IdClient.ToString() si vous souhaitez utiliser l'ID du client
             }).ToList(); // Convertir en liste
 
             // Ajouter une option vide pour la sélection par défaut
@@ -67,24 +66,23 @@ namespace food_delevery_google_auth_Final_V.Controllers
         }
 
 
-
-        // POST: Clients/Create
+        // POST: Commandefs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdClient,Nom,Adresse,NumeroTelephone,Email")] Client client)
+        public async Task<IActionResult> Create([Bind("IdCommande,ClientName,telclient,nomlivreur,DateCommande,food")] Commandef commandef)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(client);
+                _context.Add(commandef);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(client);
+            return View(commandef);
         }
 
-        // GET: Clients/Edit/5
+        // GET: Commandefs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -92,22 +90,22 @@ namespace food_delevery_google_auth_Final_V.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Client.FindAsync(id);
-            if (client == null)
+            var commandef = await _context.commandef.FindAsync(id);
+            if (commandef == null)
             {
                 return NotFound();
             }
-            return View(client);
+            return View(commandef);
         }
 
-        // POST: Clients/Edit/5
+        // POST: Commandefs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdClient,Nom,Adresse,NumeroTelephone,Email")] Client client)
+        public async Task<IActionResult> Edit(int id, [Bind("IdCommande,ClientName,telclient,nomlivreur,DateCommande,food")] Commandef commandef)
         {
-            if (id != client.IdClient)
+            if (id != commandef.IdCommande)
             {
                 return NotFound();
             }
@@ -116,12 +114,12 @@ namespace food_delevery_google_auth_Final_V.Controllers
             {
                 try
                 {
-                    _context.Update(client);
+                    _context.Update(commandef);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClientExists(client.IdClient))
+                    if (!CommandefExists(commandef.IdCommande))
                     {
                         return NotFound();
                     }
@@ -132,10 +130,10 @@ namespace food_delevery_google_auth_Final_V.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(client);
+            return View(commandef);
         }
 
-        // GET: Clients/Delete/5
+        // GET: Commandefs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -143,34 +141,34 @@ namespace food_delevery_google_auth_Final_V.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Client
-                .FirstOrDefaultAsync(m => m.IdClient == id);
-            if (client == null)
+            var commandef = await _context.commandef
+                .FirstOrDefaultAsync(m => m.IdCommande == id);
+            if (commandef == null)
             {
                 return NotFound();
             }
 
-            return View(client);
+            return View(commandef);
         }
 
-        // POST: Clients/Delete/5
+        // POST: Commandefs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var client = await _context.Client.FindAsync(id);
-            if (client != null)
+            var commandef = await _context.commandef.FindAsync(id);
+            if (commandef != null)
             {
-                _context.Client.Remove(client);
+                _context.commandef.Remove(commandef);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClientExists(int id)
+        private bool CommandefExists(int id)
         {
-            return _context.Client.Any(e => e.IdClient == id);
+            return _context.commandef.Any(e => e.IdCommande == id);
         }
     }
 }

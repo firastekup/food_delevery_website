@@ -16,6 +16,7 @@ namespace food_delevery_google_auth_Final_V.Data
         public DbSet<Commande> Commande { get; set; }
         public DbSet<Livreur> Livreur { get; set; }
         public DbSet<Food> Food { get; set; }
+        public DbSet<Commandef> commandef { get; set; }
 
     }
 }
